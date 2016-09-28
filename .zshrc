@@ -13,12 +13,14 @@ fi
 # Customize to your needs...
 
 #export LANG=ja_JP.UTF-8
+export EDITOR=vim
 
 
 # brew api token
 if [ -f ~/.brew_api_token ];then
     source ~/.brew_api_token
 fi
+
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
@@ -52,16 +54,16 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 alias updatedb='sudo /usr/libexec/locate.updatedb'
 
-alias vi='/usr/local/bin/vim'
-alias vim='/usr/local/bin/vim'
+#alias vi='/usr/local/bin/vim'
+#alias vim='/usr/local/bin/vim'
 
 
-fpath=($HOME/.zsh/anyframe(N-/) $fpath)
-autoload -Uz anyframe-init
-anyframe-init
+#fpath=($HOME/.zsh/anyframe(N-/) $fpath)
+#autoload -Uz anyframe-init
+#anyframe-init
 
-bindkey '^x^r' anyframe-widget-put-history
-bindkey '^xb' anyframe-widget-cdr
+#bindkey '^x^r' anyframe-widget-put-history
+#bindkey '^xb' anyframe-widget-cdr
 
 function peco-snippets() {
     local item
@@ -85,3 +87,23 @@ if [ -x "`which virtualenvwrapper.sh 2>/dev/null`" ]; then
     source `which virtualenvwrapper.sh`
 fi
 
+function peco-select-history() {
+  local tac
+  if which tac > /dev/null; then
+    tac="tac"
+  else
+    tac="tail -r"
+  fi
+  BUFFER=$(\history -n 1 | eval $tac | peco)
+  CURSOR=$#BUFFER
+  zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
+if [ -d $HOME/.composer/vendor/bin ]; then
+    export PATH=$HOME/.composer/vendor/bin:$PATH
+fi
+if [ -d $HOME/bin ]; then
+    export PATH=$HOME/bin:$PATH
+fi

@@ -1,0 +1,6 @@
+[core]
+	excludesfile = /home/vagrant/.gitignore
+	editor = vi
+[user]
+	name = yoshida-takeshi
+	email = yoshida-takeshi@dmm.com
