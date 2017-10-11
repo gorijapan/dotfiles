@@ -11,6 +11,15 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+## 重複パスを登録しない
+#typeset -U path cdpath fpath manpath
+
+## sudo用のpathを設定
+#typeset -xT SUDO_PATH sudo_path
+#typeset -U sudo_path
+#sudo_path=({/usr/local,/usr,}/sbin(N-/))
+## pathを設定
+#path=(~/bin(N-/) /usr/local/bin(N-/) ${path})
 
 #export LANG=ja_JP.UTF-8
 export EDITOR=vim
@@ -54,7 +63,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 alias updatedb='sudo /usr/libexec/locate.updatedb'
 
-#alias vi='/usr/local/bin/vim'
+alias vi='/usr/local/bin/vim'
 #alias vim='/usr/local/bin/vim'
 
 
@@ -107,3 +116,15 @@ fi
 if [ -d $HOME/bin ]; then
     export PATH=$HOME/bin:$PATH
 fi
+if [ -d /Applications/LibreOffice.app/Contents/MacOS ]; then
+    export PATH=$PATH:/Applications/LibreOffice.app/Contents/MacOS
+fi
+
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH="$HOME/.goenv/bin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+#export GOPATH="/var/lib/go/"
+#export GOPATH=$HOME/go
+eval "$(goenv init -)"
+
+source /usr/local/bin/aws_zsh_completer.sh

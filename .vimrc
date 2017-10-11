@@ -51,73 +51,77 @@ set fileencodings=utf-8,euc-jp,cp932,iso-2022-jp
 
 
 "---------------------------------------------------------------------------
-"plugin load   //Neobundle
+"plugin load   // dein
 "---------------------------------------------------------------------------
-filetype off
+"dein Scripts-----------------------------
 if &compatible
-  set nocompatible  " Be iMproved
+  set nocompatible               " Be iMproved
 endif
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Required:
+set runtimepath+=/Users/takeshi/.vim/bundle/repos/github.com/Shougo/dein.vim
+
+" Required:
+call dein#begin('/Users/takeshi/.vim/bundle')
+
+" Let dein manage dein
+" Required:
+call dein#add('Shougo/dein.vim')
+
+" Add or remove your plugins here:
+call dein#add('Shougo/neosnippet.vim')
+call dein#add('Shougo/neosnippet-snippets')
+
+call dein#add('Shougo/neocomplete.vim')
+call dein#add('thinca/vim-quickrun')
+call dein#add('scrooloose/nerdtree')
 
 
-" Add or remove your Bundles here:
 " You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-"unite and more {{{
-	"NeoBundle 'Shougo/vimproc.vim', {
-	"  \ 'build' : {
-	"  \     'windows' : 'make -f make_mingw32.mak',
-	"  \     'cygwin' : 'make -f make_cygwin.mak',
-	"  \     'mac' : 'make -f make_mac.mak',
-	"  \     'unix' : 'make -f make_unix.mak',
-	"  \    },
-	"  \ }
-	"NeoBundle 'Shougo/unite.vim'
-	"NeoBundle 'Shougo/neomru.vim'
-	"NeoBundleLazy 'Shougo/vimshell', {
-	"  \ 'depends' : 'Shougo/vimproc',
-	"  \ 'autoload' : {
-	"  \   'commands' : [{ 'name' : 'VimShell', 'complete' : 'customlist,vimshell#complete'},
-	"  \                 'VimShellExecute', 'VimShellInteractive',
-	"  \                 'VimShellTerminal', 'VimShellPop'],
-	"  \   'mappings' : ['<Plug>(vimshell_switch)']
-	"  \ }}
+call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
-"}}}
+" Required:
+call dein#end()
 
-"util {{{
-	NeoBundle 'thinca/vim-quickrun'
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+"if dein#check_install()
+"  call dein#install()
+"endif
+
+"End dein Scripts-------------------------
+
+
+
+
+
+
+
+
+
+" filetype off
 	"NeoBundle 'soramugi/auto-ctags.vim'
 	"NeoBundle 'rking/ag.vim'
-	NeoBundle 'scrooloose/nerdtree'
-"}}}
-
-"editor {{{
 	"NeoBundle 'Townk/vim-autoclose'
 	"NeoBundle 'bronson/vim-trailing-whitespace'
 	"NeoBundle 'junegunn/vim-easy-align'
 	"NeoBundle 'Lokaltog/vim-easymotion'
 	"NeoBundle 'terryma/vim-multiple-cursors'
-"}}}
 
 "colorschemes {{{
-	NeoBundle 'ujihisa/unite-colorscheme'
-	NeoBundle 'altercation/vim-colors-solarized'
-	NeoBundle 'tomasr/molokai'
-	NeoBundle 'sickill/vim-monokai'
-	NeoBundle 'w0ng/vim-hybrid'
-	NeoBundle 'cocopon/iceberg.vim'
-	NeoBundle 'nanotech/jellybeans.vim'
-        NeoBundle 'chriskempson/vim-tomorrow-theme'
-        NeoBundle 'gosukiwi/vim-atom-dark'
+"	NeoBundle 'ujihisa/unite-colorscheme'
+"	NeoBundle 'altercation/vim-colors-solarized'
+"	NeoBundle 'tomasr/molokai'
+"	NeoBundle 'sickill/vim-monokai'
+"	NeoBundle 'w0ng/vim-hybrid'
+"	NeoBundle 'cocopon/iceberg.vim'
+"	NeoBundle 'nanotech/jellybeans.vim'
+"       NeoBundle 'chriskempson/vim-tomorrow-theme'
+"       NeoBundle 'gosukiwi/vim-atom-dark'
 "}}}
-
-call neobundle#end()
-filetype plugin indent on
-NeoBundleCheck
-
 
 
 "---------------------------------------------------------------------------
@@ -168,22 +172,22 @@ autocmd FileType unite imap <silent> <buffer> <ESC><ESC> <ESC>q
 " }}}
 
 " neocomplete {{{
-if has('lua')
-	NeoBundleLazy 'Shougo/neocomplete.vim', {
-		\ 'depends' : 'Shougo/vimproc',
-		\ 'autoload' : { 'insert' : 1,}
-		\ }
-	let g:neocomplete#enable_at_startup               = 1
-	let g:neocomplete#auto_completion_start_length    = 3
-	let g:neocomplete#enable_ignore_case              = 1
-	let g:neocomplete#enable_smart_case               = 1
-	let g:neocomplete#enable_camel_case               = 1
-	let g:neocomplete#use_vimproc                     = 1
-	let g:neocomplete#sources#buffer#cache_limit_size = 1000000
-	let g:neocomplete#sources#tags#cache_limit_size   = 30000000
-	let g:neocomplete#enable_fuzzy_completion         = 1
-	let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
-endif
+"if has('lua')
+	" NeoBundleLazy 'Shougo/neocomplete.vim', {
+	" 	\ 'depends' : 'Shougo/vimproc',
+	" 	\ 'autoload' : { 'insert' : 1,}
+	" 	\ }
+	" let g:neocomplete#enable_at_startup               = 1
+	" let g:neocomplete#auto_completion_start_length    = 3
+	" let g:neocomplete#enable_ignore_case              = 1
+	" let g:neocomplete#enable_smart_case               = 1
+	" let g:neocomplete#enable_camel_case               = 1
+	" let g:neocomplete#use_vimproc                     = 1
+	" let g:neocomplete#sources#buffer#cache_limit_size = 1000000
+	" let g:neocomplete#sources#tags#cache_limit_size   = 30000000
+	" let g:neocomplete#enable_fuzzy_completion         = 1
+	" let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
+" endif
 " }}}
 
 " vim-easymotion {{{

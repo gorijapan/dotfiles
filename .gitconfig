@@ -1,6 +1,11 @@
-[core]
-	excludesfile = /home/vagrant/.gitignore
-	editor = vi
 [user]
-	name = yoshida-takeshi
-	email = yoshida-takeshi@dmm.com
+	name = Takeshi Yoshida
+	email = takeshi.yoshida@hacobu.jp
+[core]
+	excludesfile = /Users/takeshi/.gitignore
+[merge]
+	ff = false
+[pull]
+	ff = only
+[commit]
+	template = /Users/takeshi/.stCommitMsg

@@ -1,3 +1,7 @@
 tags
+.DS_Store
 .idea
 *.iml
+test.sql
+schema/bkschema/*
+.rules
