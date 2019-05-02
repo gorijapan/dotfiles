@@ -58,32 +58,26 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
-" Required:
-set runtimepath+=/Users/takeshi/.vim/bundle/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-" Required:
-call dein#begin('/Users/takeshi/.vim/bundle')
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
+  " Add or remove your plugins here:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('Shougo/neocomplete.vim')
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('scrooloose/nerdtree')
 
-" Add or remove your plugins here:
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
+  " You can specify revision/branch/tag.
+  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
-call dein#add('Shougo/neocomplete.vim')
-call dein#add('thinca/vim-quickrun')
-call dein#add('scrooloose/nerdtree')
+  call dein#end()
+  call dein#save_state()
+endif
 
-
-" You can specify revision/branch/tag.
-call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
-" Required:
-call dein#end()
-
-" Required:
 filetype plugin indent on
 syntax enable
 
