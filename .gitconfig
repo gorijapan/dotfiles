@@ -1,0 +1,11 @@
+[user]
+	name = Takeshi Yoshida
+	email = takeshi.yoshida@hacobu.jp
+[merge]
+	ff = false
+[pull]
+	ff = only
+#[commit]
+#	template = /Users/takeshi/.stCommitMsg
+[ghq]
+	root = /Users/takeshi/go/src
