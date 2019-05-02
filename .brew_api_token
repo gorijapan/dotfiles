@@ -1,0 +1,2 @@
+#export HOMEBREW_GITHUB_API_TOKEN=
+#export HOMEBREW_PREFIX=/usr/local

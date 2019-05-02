@@ -1,0 +1,11 @@
+mysql:bind -s "^kd" "SHOW DATABASES;"
+mysql:bind -s "^kt" "SHOW TABLES;"
+mysql:bind -s "^kp" "SHOW PROCESSLIST;"
+mysql:bind -s "^ks" "SELECT table_schema, SUM(data_length+index_length) /1024 /1024/1024 as GB FROM information_schema.tables GROUP BY table_schema ORDER BY SUM(data_length+index_length) DESC;"
+mysql:bind -s "^kr" "SELECT table_name, engine, table_rows as tbl_rows, avg_row_length as rlen, FLOOR((data_length+index_length)/1024/1024) as allMB, FLOOR((data_length)/1024/1024) as dMB, FLOOR((index_length)/1024/1024) as iMB FROM information_schema.tables WHERE table_schema=DATABASE() ORDER BY (data_length+index_length) DESC;"
+
+#mysql:bind '^U' vi-kill-line-prev
+#mysql:bind '^W' ed-delete-prev-word
+#mysql:bind -s "^kc" "SELECT DATABASE();"
+#mysql:bind -s "^kl" "SHOW VARIABLES LIKE 'SQL_SELECT_LIMIT';"
+#mysql:bind -s "^ku" "SHOW VARIABLES LIKE 'SQL_SAFE_UPDATES';"
