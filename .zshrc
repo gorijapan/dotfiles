@@ -5,6 +5,7 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -23,6 +24,7 @@ fi
 
 #export LANG=ja_JP.UTF-8
 export EDITOR=vim
+eval "$(direnv hook zsh)"
 
 
 # brew api token
@@ -44,7 +46,8 @@ bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
 setopt auto_pushd
-fpath=(/usr/local/share/zsh-completions $fpath)
+
+##fpath=(/usr/local/share/zsh-completions $fpath)
 
 #autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
@@ -63,7 +66,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 alias updatedb='sudo /usr/libexec/locate.updatedb'
 
-alias vi='/usr/local/bin/vim'
+#alias vi='/usr/local/bin/vim'
 #alias vim='/usr/local/bin/vim'
 
 
@@ -131,10 +134,13 @@ if [ -d /Applications/LibreOffice.app/Contents/MacOS ]; then
     export PATH=$PATH:/Applications/LibreOffice.app/Contents/MacOS
 fi
 # Go
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+#export PATH=$PATH:/usr/local/opt/go/libexec/bin
 # GoPATH
+#export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/go
+export GOPRIVATE=bitbucket.org/hacobu
 export PATH=$GOPATH/bin:$PATH
+export GO111MODULE=on
 # Vagrant
 export VAGRANT_HOME=$HOME/VirtualEnvs/.vagrant.d
 
@@ -153,14 +159,14 @@ export VAGRANT_HOME=$HOME/VirtualEnvs/.vagrant.d
 export PATH=$HOME/.data-science-at-the-command-line/tools:$PATH
 
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
+##export PATH="$HOME/.pyenv/bin:$PATH"
+##eval "$(pyenv init -)"
 
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-export PATH="$HOME/.goenv/bin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-#eval "$(goenv init -)"
+#goenv@ export PATH="$HOME/.goenv/bin:$PATH"
+##20191111#export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+##eval "$(goenv init -)"
 
 #source /usr/local/bin/aws_zsh_completer.sh
 source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
@@ -175,3 +181,33 @@ fi
 #export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+
+## 重複パスを登録しない
+typeset -U path cdpath fpath manpath
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+# 補完を有効にする
+autoload -U compinit
+compinit -u
+#autoload -Uz compinit && compinit -u
+ 
+# 補完メッセージを読みやすくする
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' format '%B%d%b'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' group-name ''
+ 
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+
+alias d='/usr/local/bin/docker'
+
+if [ -f ~/.movo_rc ];then
+    source ~/.movo_rc
+fi

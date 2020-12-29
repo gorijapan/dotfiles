@@ -9,3 +9,5 @@
 #	template = /Users/takeshi/.stCommitMsg
 [ghq]
 	root = /Users/takeshi/go/src
+[url "ssh://git@bitbucket.org/"]
+	insteadOf = https://bitbucket.org/
